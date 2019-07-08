@@ -1,0 +1,1 @@
+web: gunicorn ttfloodrelief.wsgi --log-file -
