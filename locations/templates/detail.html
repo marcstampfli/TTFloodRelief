@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="padding: 60px 20px;">
+    <div class="row featurette">
+        {% if location_id.latitude and location_id.longitude %}
+        <div class="col-md-5">
+            {% else %}
+            <div class="col-md-12">
+                {% endif %}
+                <h2 class="featurette-heading jumbotron-heading">
+                    <ion-icon name="business"></ion-icon>
+                    {{location_id.name}}
+                </h2>
+                {% if location_id.town %}
+                <h3 class="text-muted">
+                    <ion-icon name="pin"></ion-icon>
+                    {{location_id.town}}
+                </h3>
+                {% endif %}
+                {% if location_id.description %}
+                <p class="lead">{{location_id.description}}</p>
+                {% endif %}
+
+                <div class="col-md-6 float-left">
+                    {% if location_id.address1 %}
+                    <p class="lead">
+                        <small>Address Line 1</small>
+                        <br/>{{location_id.address1}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.address2 %}
+                    <p class="lead">
+                        <small>Address Line 2</small>
+                        <br/>{{location_id.address2}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.latitude %}
+                    <p class="lead">
+                        <small>Latitude</small>
+                        <br/>{{location_id.latitude}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.cardinal_point %}
+                    <p class="lead">
+                        <small>Cardinal Point</small>
+                        <br/>{{location_id.cardinal_point}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.contact1 %}
+                    <p class="lead">
+                        <small>Contact #1</small>
+                        <br/>{{location_id.contact1}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.contact2 %}
+                    <p class="lead">
+                        <small>Contact #2</small>
+                        <br/>{{location_id.contact2}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.website %}
+                    <p class="lead text-truncate">
+                        <small>Website</small>
+                        <br/><a href="{{location_id.website}}" target="_blank">{{location_id.website}}</a></p>
+                    {% endif %}
+
+                </div>
+                <div class="col-md-6 float-right">
+                    {% if location_id.open_time %}
+                    <p class="lead">
+                        <small>Opening Time</small>
+                        <br/>{{location_id.open_time}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.close_time %}
+                    <p class="lead">
+                        <small>Closing Time</small>
+                        <br/>{{location_id.close_time}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.longitude %}
+                    <p class="lead">
+                        <small>Longitude</small>
+                        <br/>{{location_id.longitude}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.email %}
+                    <p class="lead text-truncate">
+                        <small>Email</small>
+                        <br/><a href="mailto:{{location_id.email}}" target="_blank">{{location_id.email}}</a></p>
+                    {% endif %}
+                    {% if location_id.phone1 %}
+                    <p class="lead">
+                        <small>Phone #1</small>
+                        <br/>{{location_id.phone1}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.phone2 %}
+                    <p class="lead">
+                        <small>Phone #2</small>
+                        <br/>{{location_id.phone2}}
+                    </p>
+                    {% endif %}
+                    {% if location_id.notes %}
+                    <div class="clearfix hidden-xs hidden-sm"> </div>
+                    <p class="lead">
+                        <small>Notes</small>
+                        <br/>{{location_id.notes}}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% if location_id.latitude and location_id.longitude %}
+            <div class="col-md-7">
+                <div class="btn-group float-right">
+                    {% if location_id.website %}
+                    <a href="{{location_id.website}}" target="_blank" title="Website">
+                        <ion-icon name="link" size="large"></ion-icon>
+                    </a>
+                    {% endif %}
+                    {% if location_id.email %}
+                    <a href="mailto:{{location_id.email}}" target="_blank" title="Email">
+                        <ion-icon name="mail" size="large"></ion-icon>
+                    </a>
+                    {% endif %}
+                    {% if location_id.facebook %}
+                    <a href="{{location_id.facebook}}" target="_blank" title="Facebook">
+                        <ion-icon name="logo-facebook" size="large"></ion-icon>
+                    </a>
+                    {% endif %}
+                </div>
+                <iframe
+                        width="100%"
+                        height="100%"
+                        class="shadow-lg"
+                        frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/search?key=AIzaSyB06DRxlMfk-LQt0k4s7MEW6C9Q1P9M2DY
+&q={{location_id.latitude}},{{location_id.longitude}}" allowfullscreen>
+                </iframe>
+            </div>
+            {% endif %}
+        </div>
+
+        <a href="/locations/" class="btn btn-sm btn-outline-danger float-left">back to list</a>
+    </div>
+    {% endblock %}

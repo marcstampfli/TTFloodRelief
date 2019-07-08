@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8" style="margin: 0px auto;">
+            <h1 class="jumbotron-heading">Get Listed</h1>
+            <form action="/locations/get_listed/" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                    <div class="col-12">
+                        {{ form.description|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.address1|as_crispy_field }}
+                        {{ form.open_time|as_crispy_field }}
+                        {{ form.latitude|as_crispy_field }}
+                        {{ form.cardinal_point|as_crispy_field }}
+                        {{ form.contact1|as_crispy_field }}
+                        {{ form.contact2|as_crispy_field }}
+                        {{ form.website|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.address2|as_crispy_field }}
+                        {{ form.close_time|as_crispy_field }}
+                        {{ form.longitude|as_crispy_field }}
+                        {{ form.email|as_crispy_field }}
+                        {{ form.phone1|as_crispy_field }}
+                        {{ form.phone2|as_crispy_field }}
+                        {{ form.facebook|as_crispy_field }}
+                    </div>
+                    <div class="col-12">
+                        {{ form.notes|as_crispy_field }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Get Listed</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

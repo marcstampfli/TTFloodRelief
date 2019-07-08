@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">There are {{ total_locations.count }} Flood Relief Centers</h1>
+        <!---<p class="lead text-muted">You or someone you know may have been affected by the devastating floods we face in
+            Trinidad and Tobago.<br/>Here is a list of Relief Centers with information that may be valuable to you, find
+            your nearest location!<br/>
+            <ion-icon name="arrow-down" size="large" style="font-size: 100px;"></ion-icon>
+        </p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>--->
+    </div>
+</section>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% if locations %}
+            {% for location in locations %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm"><a href="/locations/detail/{{location.id}}">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="100%"
+                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                         role="img" aria-label="Placeholder: {{location.name}}"><title>{{location.name}}</title>
+                        <rect width="100%" height="100%" fill="#55595c"/>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{location.name}}</text>
+                    </svg>
+                </a>
+                    <div class="card-body">
+                        <p class="card-text jumbotron-heading text-truncate">{{location.name}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="/locations/detail/{{location.id}}"
+                                   class="btn btn-sm btn-outline-secondary shadow-sm">view details</a>
+                            </div>
+                            <small class="text-muted">
+                                <ion-icon name="pin"></ion-icon>
+                                {{location.town}}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>Sorry, there are no Relief Centers in the database.</p>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if locations.has_other_pages %}
+            <ul class="pagination shadow-sm">
+                {% if locations.has_previous %}
+                <li class="page-item"><a href="?page={{ locations.previous_page_number }}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="disabled page-item"><a href="#" class="page-link"><span>&laquo;</span></a></li>
+                {% endif %}
+                {% for i in locations.paginator.page_range %}
+                {% if locations.number == i %}
+                <li class="page-item active"><a href="?page={{ i }}" class="page-link"><span>{{ i }} <span
+                        class="sr-only">(current)</span></span></a></li>
+                {% else %}
+                <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if locations.has_next %}
+                <li class="page-item"><a href="?page={{ locations.next_page_number }}" class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="disabled page-item"><a href="#" class="page-link"><span>&raquo;</span></a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
