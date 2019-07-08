@@ -25,7 +25,7 @@ SECRET_KEY = '2*4u=u1g*g&zkiw!sss^kyn%whyr93-ada(di&qxt_(i=neb4^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ttfloodrelief.herokuapp.com']
 
 
 # Application definition
