@@ -138,8 +138,3 @@ HAYSTACK_CONNECTIONS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
